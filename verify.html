@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Verify Ticket</title>
+<style>
+body{text-align:center;font-family:Arial;background:#222;color:white}
+input,button{padding:10px;margin:5px;border-radius:8px}
+</style>
+</head>
+
+<body>
+<h1>🔍 VERIFY TICKET</h1>
+
+<input id="tid" placeholder="Enter Ticket Number">
+<br>
+<button onclick="verify()">VERIFY</button>
+
+<p id="res"></p>
+
+<script>
+function verify(){
+let d=localStorage.getItem(tid.value);
+if(!d){res.innerText="❌ INVALID TICKET";return;}
+let obj=JSON.parse(d);
+if(obj.status==="USED"){
+res.innerText="⚠️ TICKET ALREADY USED";
+}else{
+obj.status="USED";
+localStorage.setItem(tid.value,JSON.stringify(obj));
+res.innerText="✅ VALID – NOW USED";
+}}
+</script>
+</body>
+</html>

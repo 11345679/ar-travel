@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AR TRAVEL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+font-family:Arial;
+background:linear-gradient(to right,#141e30,#243b55);
+color:white;text-align:center}
+.box{
+background:rgba(255,255,255,0.1);
+width:90%;max-width:420px;
+margin:auto;padding:20px;border-radius:15px}
+input,select,button{
+width:100%;padding:10px;margin:6px 0;
+border-radius:8px;border:none}
+button{background:#00c6ff;font-weight:bold}
+</style>
+</head>
+
+<body>
+<h1>🚆✈️ AR TRAVEL 🚌🚇</h1>
+
+<div class="box">
+<input id="from" placeholder="From">
+<input id="to" placeholder="To">
+
+<select id="mode">
+<option>Flight</option>
+<option>Train</option>
+<option>Bus</option>
+<option>Metro</option>
+</select>
+
+<input id="name" placeholder="Passenger Name">
+<input id="phone" placeholder="Phone Number">
+<input id="address" placeholder="Address">
+
+<select id="payment">
+<option>Cash</option>
+<option>Online</option>
+</select>
+
+<button onclick="book()">BOOK TICKET</button>
+</div>
+
+<script>
+function book(){
+let ticketNo="AR"+Math.floor(Math.random()*100000);
+let data={
+ticket:ticketNo,
+from:from.value,
+to:to.value,
+mode:mode.value,
+name:name.value,
+phone:phone.value,
+date:new Date().toLocaleString(),
+status:"VALID"
+};
+localStorage.setItem(ticketNo,JSON.stringify(data));
+localStorage.setItem("lastTicket",ticketNo);
+
+if(payment.value==="Online"){
+location.href="payment.html";
+}else{
+location.href="success.html";
+}}
+</script>
+</body>
+</html>
